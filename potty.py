@@ -21,3 +21,5 @@ reservadas = {
 tokens = ['+', '-', '/'. '*', '(', ')', '{', '}', 'es', 'mayorque', 'menorque', 'iguala',  ]
 
 #probando commit desde VS code
+
+#commit julio
