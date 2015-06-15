@@ -18,4 +18,21 @@ reservadas = {
 		
 }
 
-tokens = ['+', '-', '/'. '*', '(', ')', '{', '}', 'es', 'mayorque', 'menorque', 'iguala',  ]
+tokens = ['+', '-', '/'. '*', '(', ')', '{', '}', 'es', 'mayor_que', 'menor_que', 'igual_a', 'mayor_igual', 'menor_igual', 'no_igual', 'cadena', 'numero', 'letra'] + list(reservadas.values())
+
+t_+ = r'\+'
+t_- = r'-'
+t_* = r'\*'
+t_/ = r'/'
+t_( = r'\('
+t_) = r')'
+t_{ = r'{'
+t_} = r'}'
+t_es = r'='
+t_mayor_que = r'>'
+t_menor_que = r'<'
+t_mayor_igual = r'>='
+t_menor_igual = r'<='
+t_igual_a = r'=='
+t_no_igual : r'!='
+t_cadena 
