@@ -35,7 +35,8 @@ t_mayor_igual = r'>='
 t_menor_igual = r'<='
 t_igual_a = r'=='
 t_diferente_a = r'!='
-variable = r'([a-z]+[A-Z]*[0-9]*)+'
+t_variable = r'([a-z]+[A-Z]*[0-9]*)+'
+t_letra = r'[a-zA-Z]'
 	
 def t_numero(t):
 	r'[0-9]+'
@@ -47,12 +48,9 @@ def t_FINDELINEA(t):
     t.lexer.lineno += t.value.count("\n")
     return t
 
-def t_
-
-t_ignore = " \t"
-
 def t_IDENTIFICADOR(t):
     r'[A-Z][A-Z0-9]*'
     t.type = reservadas.get(t.value, 'IDENTIFICADOR')    # Check for reserved words
     return t
-	
+
+t_ignore = " \t"	
