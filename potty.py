@@ -13,12 +13,10 @@ reservadas = {
 	'ESCRIBIR' : 'ESCRIBIR'
 	'VERDAD' : 'VERDAD'
 	'MENTIRA' : 'MENTIRA'
-	'Y' : 'Y'
-	'O' : 'O'
 
 }
 
-tokens = ['SUMA', 'RESTA', 'DIV', 'MULT', 'PRI', 'PRD', 'LI', 'LD', 'ASIG', 'MAYQ', 'MENQ', 'IGUAL', 'MAYIGUAL', 'MENIGUAL', 'DIFERENTE', 'VARIABLE', 'NUM', 'LETRA', 'FINDELINEA', 'ID'] + list(reservadas.values())
+tokens = ['SUMA', 'RESTA', 'DIV', 'MULT', 'PRI', 'PRD', 'ASIG', 'MAYQ', 'MENQ', 'IGUAL', 'MAYIGUAL', 'MENIGUAL', 'DIFERENTE', 'VARIABLE', 'NUM', 'LETRA', 'FINDELINEA', 'ID'] + list(reservadas.values())
 
 t_SUMA = r'\+'
 t_RESTA = r'-'
@@ -26,8 +24,8 @@ t_MULT = r'\*'
 t_DIV = r'/'
 t_PRI = r'\('
 t_PRD = r'\)'
-t_LI = r'{'
-t_LD = r'}'
+#t_LI = r'{'
+#t_LD = r'}'
 t_ASIG = r'='
 t_MAYQ = r'>'
 t_MENQ = r'<'
@@ -36,22 +34,6 @@ t_MENIGUAL = r'<='
 t_IGUAL= r'=='
 t_DIFERENTE = r'!='
 t_VARIABLE = r'([a-z]+[A-Z]*[0-9]*)+'
-t_+ = r'\+'
-t_- = r'-'
-t_* = r'\*'
-t_/ = r'/'
-t_( = r'\('
-t_) = r'\)'
-t_{ = r'{'
-t_} = r'}'
-t_es = r'='
-t_mayor_que = r'>'
-t_menor_que = r'<'
-t_mayor_igual = r'>='
-t_menor_igual = r'<='
-t_igual_a = r'=='
-t_diferente_a = r'!='
-t_variable = r'([a-z]+[A-Z]*[0-9]*)+'
 t_letra = r'[a-zA-Z]'
 	
 def t_NUM(t):
@@ -70,9 +52,6 @@ def t_newline(t):
     t.lexer.lineno += len(t.value)
 
 def t_ID(t):
-
-
-def t_IDENTIFICADOR(t):
     r'[A-Z][A-Z0-9]*'
     t.type = reservadas.get(t.value, 'ID')    # Check for reserved words
     return t
@@ -80,8 +59,6 @@ def t_IDENTIFICADOR(t):
 def t_error(t):
     print("Caracter ilegal '%s'" % t.value[0] + " en la linea " + str(t.lexer.lineno))
     t.lexer.skip(1)
-	
-t_ignore = " \t"
 
 lexer = ply.lex.lex()
 lexer.input("JUGAR SI 6 > 7")
@@ -92,3 +69,26 @@ while True:
     print tok
 
 t_ignore = " \t"	
+
+##### PARSER
+
+def p_programa(p):
+	'programa : JUGAR instruccion DORMIR eof'
+	
+def p_eof(p):
+	'''eof : '''
+	
+def p_instruccion(p):
+	'''instruccion : instruccion asignacion
+					| instruccion aritmetica
+					| instruccion condicional
+					| instruccion ESCRIBIR
+					| '''
+
+def p_asignacion(p):
+	'''asignacion : variable es dato'''
+	
+def p_aritmetica(p):
+	'''aritmetica : variable es PRI dato aritExtra PRD'''
+	
+	
