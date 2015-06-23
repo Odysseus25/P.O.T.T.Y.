@@ -61,7 +61,8 @@ def t_error(t):
     t.lexer.skip(1)
 
 lexer = ply.lex.lex()
-lexer.input("JUGAR SI 6 > 7")
+#lexer.input("JUGAR SI 6 > 7")
+
 while True:
     tok = lexer.token()
     if not tok:
@@ -91,4 +92,45 @@ def p_asignacion(p):
 def p_aritmetica(p):
 	'''aritmetica : variable es PRI dato aritExtra PRD'''
 	
+def p_condicional(p):
+	'''condicional : if
+					| while
+					| for'''
+					
+def p_aritExtra(p):
+	'''aritExtra : operador variable aritExtra 
+				  | operador num aritExtra
+				  | '''
+				  
+def p_operador(p):
+	'''p_operador : SUMA
+				   | RESTA
+				   | MULT
+				   | DIV'''
+				   
+def p_if(p):
+	'''p_if : si requisito entonces PRI instruccion PDR'''
 	
+def p_requisito(p):
+	'''requisito : variable condicion posibilidad'''
+	
+def p_posibilidad(p):
+	'''posibilidad : dato
+				    | VERDAD
+					| MENTIRA'''
+					
+def p_condicion(p):
+	'''condicion : MAYQ
+				  | MENQ
+				  | IGUAL
+				  | MAYIGUAL
+				  | MENIGUAL
+				  | DIFERENTE'''
+				  
+def p_for(p):
+	'''for : DAR num VUELTAS PRI instruccion PRD'''
+	
+def p_while(p):
+	'''while : HAGA PRI instruccion PRD MIENTRAS requisito'''
+				  
+				  
