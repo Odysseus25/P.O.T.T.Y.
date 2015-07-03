@@ -89,19 +89,23 @@ def p_instruccion(p):
 
 def p_asignacion(p):
 	'''asignacion : VARIABLE ASIG dato'''
+	p[0] = p[1] + p[2] + [3]
 	
 def p_aritmetica(p):
 	'''aritmetica : VARIABLE ASIG PRI dato aritExtra PRD'''
+	p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6]
 	
 def p_condicional(p):
 	'''condicional : if
 					| while
 					| for'''
+	#p[0] = 
 					
 def p_aritExtra(p):
 	'''aritExtra : operador VARIABLE aritExtra 
 				  | operador NUM aritExtra
 				  | '''
+	#condicional
 				  
 def p_operador(p):
 	'''operador : SUMA
@@ -111,9 +115,11 @@ def p_operador(p):
 				   
 def p_if(p):
 	'''if : SI requisito ENTONCES PRI instruccion PRD'''
-	
+	p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6]
+	 
 def p_requisito(p):
 	'''requisito : VARIABLE condicion posibilidad'''
+	p[0] = p[1] + p[2] + p[3]
 	
 def p_posibilidad(p):
 	'''posibilidad : dato
@@ -130,6 +136,7 @@ def p_condicion(p):
 				  
 def p_for(p):
 	'''for : DAR NUM VUELTAS PRI instruccion PRD'''
+	p[0] = p[1]
 	
 def p_while(p):
 	'''while : HAGA PRI instruccion PRD MIENTRAS requisito'''
