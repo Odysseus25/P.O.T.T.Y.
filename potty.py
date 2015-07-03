@@ -86,7 +86,9 @@ def p_instruccion(p):
 					| instruccion condicional
 					| instruccion ESCRIBIR
 					| '''
-
+	if p[2] == null
+	   p[0] = null 
+	
 def p_asignacion(p):
 	'''asignacion : VARIABLE ASIG dato'''
 	p[0] = p[1] + p[2] + [3]
@@ -136,10 +138,11 @@ def p_condicion(p):
 				  
 def p_for(p):
 	'''for : DAR NUM VUELTAS PRI instruccion PRD'''
-	p[0] = p[1]
+	p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6]
 	
 def p_while(p):
 	'''while : HAGA PRI instruccion PRD MIENTRAS requisito'''
+	p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6]
 			
 def p_dato(p):
 	'''dato : LETRA
