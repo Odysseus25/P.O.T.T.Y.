@@ -2,16 +2,16 @@ import ply.lex as lex
 import ply.yacc as yacc
 
 reservadas = {
-	'JUGAR' : 'JUGAR'
-	'DORMIR' : 'DORMIR'
-	'DAR' : 'DAR'
-	'VUELTAS' : 'VUELTAS'
-	'SI' : 'SI'
-	'ENTONCES' : 'ENTONCES'
-	'HAGA' : 'HAGA'
-	'MIENTRAS' : 'MIENTRAS'
-	'ESCRIBIR' : 'ESCRIBIR'
-	'VERDAD' : 'VERDAD'
+	'JUGAR' : 'JUGAR',
+	'DORMIR' : 'DORMIR',
+	'DAR' : 'DAR',
+	'VUELTAS' : 'VUELTAS',
+	'SI' : 'SI',
+	'ENTONCES' : 'ENTONCES',
+	'HAGA' : 'HAGA',
+	'MIENTRAS' : 'MIENTRAS',
+	'ESCRIBIR' : 'ESCRIBIR',
+	'VERDAD' : 'VERDAD',
 	'MENTIRA' : 'MENTIRA'
 
 }
@@ -20,21 +20,19 @@ tokens = ['SUMA', 'RESTA', 'DIV', 'MULT', 'PRI', 'PRD', 'ASIG', 'MAYQ', 'MENQ', 
 
 t_SUMA = r'\+'
 t_RESTA = r'-'
-t_MULT = r'\*'
 t_DIV = r'/'
+t_MULT = r'\*'
 t_PRI = r'\('
 t_PRD = r'\)'
-#t_LI = r'{'
-#t_LD = r'}'
 t_ASIG = r'='
 t_MAYQ = r'>'
 t_MENQ = r'<'
+t_IGUAL= r'=='
 t_MAYIGUAL = r'>='
 t_MENIGUAL = r'<='
-t_IGUAL= r'=='
 t_DIFERENTE = r'!='
 t_VARIABLE = r'([a-z]+[A-Z]*[0-9]*)+'
-t_letra = r'[a-zA-Z]'
+t_LETRA = r'[a-zA-Z]'
 	
 def t_NUM(t):
 	r'[0-9]+'
@@ -46,36 +44,39 @@ def t_FINDELINEA(t):
     t.lexer.lineno += t.value.count("\n")
     return t
 
-#función que determina el número de línea 
+#funcion que determina el numero de linea 
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
 def t_ID(t):
     r'[A-Z][A-Z0-9]*'
-    t.type = reservadas.get(t.value, 'ID')    # Check for reserved words
+    t.type = reservadas.get(t.value, 'ID')    # Chequea palabras reservadas
     return t
 	
 def t_error(t):
     print("Caracter ilegal '%s'" % t.value[0] + " en la linea " + str(t.lexer.lineno))
     t.lexer.skip(1)
 
-lexer = ply.lex.lex()
+t_ignore = " \t"	
+
+import ply.lex as lex
+lex.lex()
 #lexer.input("JUGAR SI 6 > 7")
 
-while True:
-    tok = lexer.token()
-    if not tok:
-        break
-    print tok
+# while True:
+#     tok = lexer.token()
+#     if not tok:
+#         break
+#     print tok
 
-t_ignore = " \t"	
+
 
 ##### PARSER
 
 def p_programa(p):
 	'programa : JUGAR instruccion DORMIR eof'
-	
+	# p[0] = p[1] 
 def p_eof(p):
 	'''eof : '''
 	
@@ -87,10 +88,10 @@ def p_instruccion(p):
 					| '''
 
 def p_asignacion(p):
-	'''asignacion : variable es dato'''
+	'''asignacion : VARIABLE ASIG dato'''
 	
 def p_aritmetica(p):
-	'''aritmetica : variable es PRI dato aritExtra PRD'''
+	'''aritmetica : VARIABLE ASIG PRI dato aritExtra PRD'''
 	
 def p_condicional(p):
 	'''condicional : if
@@ -98,21 +99,21 @@ def p_condicional(p):
 					| for'''
 					
 def p_aritExtra(p):
-	'''aritExtra : operador variable aritExtra 
-				  | operador num aritExtra
+	'''aritExtra : operador VARIABLE aritExtra 
+				  | operador NUM aritExtra
 				  | '''
 				  
 def p_operador(p):
-	'''p_operador : SUMA
+	'''operador : SUMA
 				   | RESTA
 				   | MULT
 				   | DIV'''
 				   
 def p_if(p):
-	'''p_if : si requisito entonces PRI instruccion PDR'''
+	'''if : SI requisito ENTONCES PRI instruccion PRD'''
 	
 def p_requisito(p):
-	'''requisito : variable condicion posibilidad'''
+	'''requisito : VARIABLE condicion posibilidad'''
 	
 def p_posibilidad(p):
 	'''posibilidad : dato
@@ -128,9 +129,33 @@ def p_condicion(p):
 				  | DIFERENTE'''
 				  
 def p_for(p):
-	'''for : DAR num VUELTAS PRI instruccion PRD'''
+	'''for : DAR NUM VUELTAS PRI instruccion PRD'''
 	
 def p_while(p):
 	'''while : HAGA PRI instruccion PRD MIENTRAS requisito'''
-				  
+			
+def p_dato(p):
+	'''dato : LETRA
+			 | NUM'''
+
+def p_error(p):
+    print ("ERROR FATAL")
+
+# Build the parser
+parser = yacc.yacc()
+
+while True:
+   try:
+       s = raw_input('potty> ')
+   except EOFError:
+       break
+   if not s: continue
+   result = parser.parse(s)
+   print(result)	  
+
+try:
+    file = open(filename,'r')
+except FileNotFoundError:
+    print("Archivo no encontrado: ",filename)
+    continue
 				  
