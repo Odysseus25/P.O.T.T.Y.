@@ -76,7 +76,9 @@ lex.lex()
 
 def p_programa(p):
 	'programa : JUGAR instruccion DORMIR eof'
-	# p[0] = p[1] 
+	p[0] = p[1] + p[2] + p[3]
+	print(p[0])
+	
 def p_eof(p):
 	'''eof : '''
 	
@@ -86,12 +88,11 @@ def p_instruccion(p):
 					| instruccion condicional
 					| instruccion ESCRIBIR
 					| '''
-	if p[2] == null
-	   p[0] = null 
+	if[]
 	
 def p_asignacion(p):
 	'''asignacion : VARIABLE ASIG dato'''
-	p[0] = p[1] + p[2] + [3]
+	p[0] = p[1] + p[2] + p[3]
 	
 def p_aritmetica(p):
 	'''aritmetica : VARIABLE ASIG PRI dato aritExtra PRD'''
@@ -114,6 +115,7 @@ def p_operador(p):
 				   | RESTA
 				   | MULT
 				   | DIV'''
+	# if p[2] == '+': p[0] = 
 				   
 def p_if(p):
 	'''if : SI requisito ENTONCES PRI instruccion PRD'''
@@ -163,9 +165,9 @@ while True:
    result = parser.parse(s)
    print(result)	  
 
-try:
-    file = open(filename,'r')
-except FileNotFoundError:
-    print("Archivo no encontrado: ",filename)
-    continue
+# try:
+#     file = open(filename,'r')
+# except FileNotFoundError:
+#     print("Archivo no encontrado: ",filename)
+# continue
 				  
