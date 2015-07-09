@@ -109,6 +109,7 @@ def p_condicional(p):
 	'''condicional : if
 					| while
 					| for'''
+	p[0] = p[1]
 					
 def p_aritExtra(p):
 	'''aritExtra : aritExtra operador dato 
@@ -127,16 +128,17 @@ def p_operador(p):
 				   
 def p_if(p):
 	'''if : SI requisito ENTONCES PRI instruccion PRD'''
-	#p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6]
+	p[0] = p[1] + " " + p[2] + " " + p[3] + p[4] + p[5] + p[6]
 	 
 def p_requisito(p):
 	'''requisito : VARIABLE condicion posibilidad'''
-	#p[0] = p[1] + p[2] + p[3]
+	p[0] = p[1] + " " + p[2] + " " + p[3]
 	
 def p_posibilidad(p):
 	'''posibilidad : dato
 				    | VERDAD
 					| MENTIRA'''
+	p[0] = p[1]
 					
 def p_condicion(p):
 	'''condicion : MAYQ
@@ -145,14 +147,15 @@ def p_condicion(p):
 				  | MAYIGUAL
 				  | MENIGUAL
 				  | DIFERENTE'''
+	p[0] = p[1]
 				  
 def p_for(p):
-	'''for : DAR NUM VUELTAS PRI instruccion PRD'''
-	#p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6]
+	'''for : DAR dato VUELTAS PRI instruccion PRD'''
+	p[0] = p[1] + " " + p[2] + " " + p[3] + p[4] + p[5] + p[6]
 	
 def p_while(p):
 	'''while : HAGA PRI instruccion PRD MIENTRAS requisito'''
-	#p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6]
+	p[0] = p[1] + " " + p[2] + p[3] + p[4] + " " + p[5] + " " + p[6]
 			
 def p_dato(p):
 	'''dato : LETRA
