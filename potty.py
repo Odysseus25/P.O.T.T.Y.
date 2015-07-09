@@ -109,7 +109,6 @@ def p_condicional(p):
 	'''condicional : if
 					| while
 					| for'''
-	#p[0] = p[1]
 					
 def p_aritExtra(p):
 	'''aritExtra : operador VARIABLE aritExtra 
@@ -121,8 +120,7 @@ def p_operador(p):
 	'''operador : SUMA
 				   | RESTA
 				   | MULT
-				   | DIV'''
-	# if p[2] == '+': p[0] = 
+				   | DIV''' 
 				   
 def p_if(p):
 	'''if : SI requisito ENTONCES PRI instruccion PRD'''
@@ -155,7 +153,8 @@ def p_while(p):
 			
 def p_dato(p):
 	'''dato : LETRA
-			 | NUM'''
+			 | NUM
+			 | VARIABLE'''
 	p[0] = p[1]
 
 def p_error(p):
