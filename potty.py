@@ -115,7 +115,6 @@ def p_aritExtra(p):
 				  | operador NUM aritExtra
 				  | empty'''
 	if p[3] is None:
-<<<<<<< Updated upstream
 		p[0] = ""
 	else:
 		if p[1] is not None:
@@ -126,7 +125,6 @@ def p_aritExtra(p):
 		p[0] = p[1] + " " + p[2]
 	else:
 		p[0] = p[1] + " " + p[2] + " " + p[3]
->>>>>>> Stashed changes
 				  
 def p_operador(p):
 	'''operador : SUMA
