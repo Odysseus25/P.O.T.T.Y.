@@ -1,5 +1,6 @@
 import ply.lex as lex 
 import ply.yacc as yacc
+import sys
 
 reservadas = {
 	'JUGAR' : 'JUGAR',
@@ -36,7 +37,6 @@ t_LETRA = r'[a-zA-Z]'
 	
 def t_NUM(t):
 	r'[0-9]+'
-	t.value = int(t.value)
 	return t
 	
 def t_FINDELINEA(t):
@@ -75,9 +75,9 @@ lex.lex()
 ##### PARSER
 
 def p_programa(p):
-	'programa : JUGAR instruccion DORMIR eof'
-	p[0] = p[1] + p[2] + p[3]
-	print(p[0])
+	'''programa : JUGAR instruccion DORMIR eof'''
+	p[0] = p[1] + " " + p[2] + " " + p[3]
+	#print(p[0])
 	
 def p_eof(p):
 	'''eof : '''
@@ -87,22 +87,29 @@ def p_instruccion(p):
 					| instruccion aritmetica
 					| instruccion condicional
 					| instruccion ESCRIBIR
-					| '''
-	if[]
+					| empty'''
+	if p[1] is None:
+		p[0] = ""
+	else:
+		if [1] is not None:
+			p[0] = p[1] + " " + p[2]
+		else:
+			p[0] = p[2]
+		
 	
 def p_asignacion(p):
 	'''asignacion : VARIABLE ASIG dato'''
-	p[0] = p[1] + p[2] + p[3]
+	p[0] = p[1] + " " + p[2] + " " + p[3]
 	
 def p_aritmetica(p):
 	'''aritmetica : VARIABLE ASIG PRI dato aritExtra PRD'''
-	p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6]
+	#p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6]
 	
 def p_condicional(p):
 	'''condicional : if
 					| while
 					| for'''
-	#p[0] = 
+	#p[0] = p[1]
 					
 def p_aritExtra(p):
 	'''aritExtra : operador VARIABLE aritExtra 
@@ -119,11 +126,11 @@ def p_operador(p):
 				   
 def p_if(p):
 	'''if : SI requisito ENTONCES PRI instruccion PRD'''
-	p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6]
+	#p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6]
 	 
 def p_requisito(p):
 	'''requisito : VARIABLE condicion posibilidad'''
-	p[0] = p[1] + p[2] + p[3]
+	#p[0] = p[1] + p[2] + p[3]
 	
 def p_posibilidad(p):
 	'''posibilidad : dato
@@ -140,18 +147,23 @@ def p_condicion(p):
 				  
 def p_for(p):
 	'''for : DAR NUM VUELTAS PRI instruccion PRD'''
-	p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6]
+	#p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6]
 	
 def p_while(p):
 	'''while : HAGA PRI instruccion PRD MIENTRAS requisito'''
-	p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6]
+	#p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6]
 			
 def p_dato(p):
 	'''dato : LETRA
 			 | NUM'''
+	p[0] = p[1]
 
 def p_error(p):
     print ("ERROR FATAL")
+
+def p_empty(p): 
+	'empty :'
+	pass
 
 # Build the parser
 parser = yacc.yacc()
