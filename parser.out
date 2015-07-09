@@ -37,7 +37,7 @@ Rule 26    condicion -> IGUAL
 Rule 27    condicion -> MAYIGUAL
 Rule 28    condicion -> MENIGUAL
 Rule 29    condicion -> DIFERENTE
-Rule 30    for -> DAR NUM VUELTAS PRI instruccion PRD
+Rule 30    for -> DAR dato VUELTAS PRI instruccion PRD
 Rule 31    while -> HAGA PRI instruccion PRD MIENTRAS requisito
 Rule 32    dato -> LETRA
 Rule 33    dato -> NUM
@@ -66,7 +66,7 @@ MENQ                 : 25
 MENTIRA              : 23
 MIENTRAS             : 31
 MULT                 : 17
-NUM                  : 30 33
+NUM                  : 33
 PRD                  : 9 19 30 31
 PRI                  : 9 19 30 31
 RESTA                : 16
@@ -84,7 +84,7 @@ aritmetica           : 4
 asignacion           : 3
 condicion            : 20
 condicional          : 5
-dato                 : 8 9 13 21
+dato                 : 8 9 13 21 30
 empty                : 7 14
 eof                  : 1
 for                  : 12
@@ -147,7 +147,7 @@ state 3
     (12) condicional -> . for
     (19) if -> . SI requisito ENTONCES PRI instruccion PRD
     (31) while -> . HAGA PRI instruccion PRD MIENTRAS requisito
-    (30) for -> . DAR NUM VUELTAS PRI instruccion PRD
+    (30) for -> . DAR dato VUELTAS PRI instruccion PRD
 
     DORMIR          shift and go to state 5
     ESCRIBIR        shift and go to state 8
@@ -248,16 +248,22 @@ state 10
 
 state 11
 
-    (30) for -> DAR . NUM VUELTAS PRI instruccion PRD
+    (30) for -> DAR . dato VUELTAS PRI instruccion PRD
+    (32) dato -> . LETRA
+    (33) dato -> . NUM
+    (34) dato -> . VARIABLE
 
-    NUM             shift and go to state 20
+    LETRA           shift and go to state 23
+    NUM             shift and go to state 21
+    VARIABLE        shift and go to state 22
 
+    dato                           shift and go to state 20
 
 state 12
 
     (31) while -> HAGA . PRI instruccion PRD MIENTRAS requisito
 
-    PRI             shift and go to state 21
+    PRI             shift and go to state 24
 
 
 state 13
@@ -278,7 +284,7 @@ state 14
     (8) asignacion -> VARIABLE . ASIG dato
     (9) aritmetica -> VARIABLE . ASIG PRI dato aritExtra PRD
 
-    ASIG            shift and go to state 22
+    ASIG            shift and go to state 25
 
 
 state 15
@@ -318,7 +324,7 @@ state 18
 
     (19) if -> SI requisito . ENTONCES PRI instruccion PRD
 
-    ENTONCES        shift and go to state 23
+    ENTONCES        shift and go to state 26
 
 
 state 19
@@ -331,23 +337,80 @@ state 19
     (28) condicion -> . MENIGUAL
     (29) condicion -> . DIFERENTE
 
-    MAYQ            shift and go to state 29
-    MENQ            shift and go to state 25
-    IGUAL           shift and go to state 26
-    MAYIGUAL        shift and go to state 30
-    MENIGUAL        shift and go to state 24
-    DIFERENTE       shift and go to state 27
+    MAYQ            shift and go to state 32
+    MENQ            shift and go to state 28
+    IGUAL           shift and go to state 29
+    MAYIGUAL        shift and go to state 33
+    MENIGUAL        shift and go to state 27
+    DIFERENTE       shift and go to state 30
 
-    condicion                      shift and go to state 28
+    condicion                      shift and go to state 31
 
 state 20
 
-    (30) for -> DAR NUM . VUELTAS PRI instruccion PRD
+    (30) for -> DAR dato . VUELTAS PRI instruccion PRD
 
-    VUELTAS         shift and go to state 31
+    VUELTAS         shift and go to state 34
 
 
 state 21
+
+    (33) dato -> NUM .
+
+    DORMIR          reduce using rule 33 (dato -> NUM .)
+    ESCRIBIR        reduce using rule 33 (dato -> NUM .)
+    VARIABLE        reduce using rule 33 (dato -> NUM .)
+    SI              reduce using rule 33 (dato -> NUM .)
+    HAGA            reduce using rule 33 (dato -> NUM .)
+    DAR             reduce using rule 33 (dato -> NUM .)
+    PRD             reduce using rule 33 (dato -> NUM .)
+    SUMA            reduce using rule 33 (dato -> NUM .)
+    RESTA           reduce using rule 33 (dato -> NUM .)
+    MULT            reduce using rule 33 (dato -> NUM .)
+    DIV             reduce using rule 33 (dato -> NUM .)
+    ENTONCES        reduce using rule 33 (dato -> NUM .)
+    VUELTAS         reduce using rule 33 (dato -> NUM .)
+
+
+state 22
+
+    (34) dato -> VARIABLE .
+
+    DORMIR          reduce using rule 34 (dato -> VARIABLE .)
+    ESCRIBIR        reduce using rule 34 (dato -> VARIABLE .)
+    VARIABLE        reduce using rule 34 (dato -> VARIABLE .)
+    SI              reduce using rule 34 (dato -> VARIABLE .)
+    HAGA            reduce using rule 34 (dato -> VARIABLE .)
+    DAR             reduce using rule 34 (dato -> VARIABLE .)
+    PRD             reduce using rule 34 (dato -> VARIABLE .)
+    SUMA            reduce using rule 34 (dato -> VARIABLE .)
+    RESTA           reduce using rule 34 (dato -> VARIABLE .)
+    MULT            reduce using rule 34 (dato -> VARIABLE .)
+    DIV             reduce using rule 34 (dato -> VARIABLE .)
+    ENTONCES        reduce using rule 34 (dato -> VARIABLE .)
+    VUELTAS         reduce using rule 34 (dato -> VARIABLE .)
+
+
+state 23
+
+    (32) dato -> LETRA .
+
+    DORMIR          reduce using rule 32 (dato -> LETRA .)
+    ESCRIBIR        reduce using rule 32 (dato -> LETRA .)
+    VARIABLE        reduce using rule 32 (dato -> LETRA .)
+    SI              reduce using rule 32 (dato -> LETRA .)
+    HAGA            reduce using rule 32 (dato -> LETRA .)
+    DAR             reduce using rule 32 (dato -> LETRA .)
+    PRD             reduce using rule 32 (dato -> LETRA .)
+    SUMA            reduce using rule 32 (dato -> LETRA .)
+    RESTA           reduce using rule 32 (dato -> LETRA .)
+    MULT            reduce using rule 32 (dato -> LETRA .)
+    DIV             reduce using rule 32 (dato -> LETRA .)
+    ENTONCES        reduce using rule 32 (dato -> LETRA .)
+    VUELTAS         reduce using rule 32 (dato -> LETRA .)
+
+
+state 24
 
     (31) while -> HAGA PRI . instruccion PRD MIENTRAS requisito
     (3) instruccion -> . instruccion asignacion
@@ -364,10 +427,10 @@ state 21
     HAGA            reduce using rule 35 (empty -> .)
     DAR             reduce using rule 35 (empty -> .)
 
-    instruccion                    shift and go to state 32
+    instruccion                    shift and go to state 35
     empty                          shift and go to state 4
 
-state 22
+state 25
 
     (8) asignacion -> VARIABLE ASIG . dato
     (9) aritmetica -> VARIABLE ASIG . PRI dato aritExtra PRD
@@ -375,21 +438,21 @@ state 22
     (33) dato -> . NUM
     (34) dato -> . VARIABLE
 
-    PRI             shift and go to state 34
-    LETRA           shift and go to state 33
-    NUM             shift and go to state 36
-    VARIABLE        shift and go to state 37
+    PRI             shift and go to state 36
+    LETRA           shift and go to state 23
+    NUM             shift and go to state 21
+    VARIABLE        shift and go to state 22
 
-    dato                           shift and go to state 35
+    dato                           shift and go to state 37
 
-state 23
+state 26
 
     (19) if -> SI requisito ENTONCES . PRI instruccion PRD
 
     PRI             shift and go to state 38
 
 
-state 24
+state 27
 
     (28) condicion -> MENIGUAL .
 
@@ -400,7 +463,7 @@ state 24
     VARIABLE        reduce using rule 28 (condicion -> MENIGUAL .)
 
 
-state 25
+state 28
 
     (25) condicion -> MENQ .
 
@@ -411,7 +474,7 @@ state 25
     VARIABLE        reduce using rule 25 (condicion -> MENQ .)
 
 
-state 26
+state 29
 
     (26) condicion -> IGUAL .
 
@@ -422,7 +485,7 @@ state 26
     VARIABLE        reduce using rule 26 (condicion -> IGUAL .)
 
 
-state 27
+state 30
 
     (29) condicion -> DIFERENTE .
 
@@ -433,7 +496,7 @@ state 27
     VARIABLE        reduce using rule 29 (condicion -> DIFERENTE .)
 
 
-state 28
+state 31
 
     (20) requisito -> VARIABLE condicion . posibilidad
     (21) posibilidad -> . dato
@@ -445,14 +508,14 @@ state 28
 
     VERDAD          shift and go to state 40
     MENTIRA         shift and go to state 41
-    LETRA           shift and go to state 33
-    NUM             shift and go to state 36
-    VARIABLE        shift and go to state 37
+    LETRA           shift and go to state 23
+    NUM             shift and go to state 21
+    VARIABLE        shift and go to state 22
 
     dato                           shift and go to state 39
     posibilidad                    shift and go to state 42
 
-state 29
+state 32
 
     (24) condicion -> MAYQ .
 
@@ -463,7 +526,7 @@ state 29
     VARIABLE        reduce using rule 24 (condicion -> MAYQ .)
 
 
-state 30
+state 33
 
     (27) condicion -> MAYIGUAL .
 
@@ -474,14 +537,14 @@ state 30
     VARIABLE        reduce using rule 27 (condicion -> MAYIGUAL .)
 
 
-state 31
+state 34
 
-    (30) for -> DAR NUM VUELTAS . PRI instruccion PRD
+    (30) for -> DAR dato VUELTAS . PRI instruccion PRD
 
     PRI             shift and go to state 43
 
 
-state 32
+state 35
 
     (31) while -> HAGA PRI instruccion . PRD MIENTRAS requisito
     (3) instruccion -> instruccion . asignacion
@@ -495,7 +558,7 @@ state 32
     (12) condicional -> . for
     (19) if -> . SI requisito ENTONCES PRI instruccion PRD
     (31) while -> . HAGA PRI instruccion PRD MIENTRAS requisito
-    (30) for -> . DAR NUM VUELTAS PRI instruccion PRD
+    (30) for -> . DAR dato VUELTAS PRI instruccion PRD
 
     PRD             shift and go to state 44
     ESCRIBIR        shift and go to state 8
@@ -511,38 +574,20 @@ state 32
     condicional                    shift and go to state 13
     if                             shift and go to state 6
 
-state 33
-
-    (32) dato -> LETRA .
-
-    DORMIR          reduce using rule 32 (dato -> LETRA .)
-    ESCRIBIR        reduce using rule 32 (dato -> LETRA .)
-    VARIABLE        reduce using rule 32 (dato -> LETRA .)
-    SI              reduce using rule 32 (dato -> LETRA .)
-    HAGA            reduce using rule 32 (dato -> LETRA .)
-    DAR             reduce using rule 32 (dato -> LETRA .)
-    PRD             reduce using rule 32 (dato -> LETRA .)
-    ENTONCES        reduce using rule 32 (dato -> LETRA .)
-    SUMA            reduce using rule 32 (dato -> LETRA .)
-    RESTA           reduce using rule 32 (dato -> LETRA .)
-    MULT            reduce using rule 32 (dato -> LETRA .)
-    DIV             reduce using rule 32 (dato -> LETRA .)
-
-
-state 34
+state 36
 
     (9) aritmetica -> VARIABLE ASIG PRI . dato aritExtra PRD
     (32) dato -> . LETRA
     (33) dato -> . NUM
     (34) dato -> . VARIABLE
 
-    LETRA           shift and go to state 33
-    NUM             shift and go to state 36
-    VARIABLE        shift and go to state 37
+    LETRA           shift and go to state 23
+    NUM             shift and go to state 21
+    VARIABLE        shift and go to state 22
 
     dato                           shift and go to state 45
 
-state 35
+state 37
 
     (8) asignacion -> VARIABLE ASIG dato .
 
@@ -553,42 +598,6 @@ state 35
     HAGA            reduce using rule 8 (asignacion -> VARIABLE ASIG dato .)
     DAR             reduce using rule 8 (asignacion -> VARIABLE ASIG dato .)
     DORMIR          reduce using rule 8 (asignacion -> VARIABLE ASIG dato .)
-
-
-state 36
-
-    (33) dato -> NUM .
-
-    DORMIR          reduce using rule 33 (dato -> NUM .)
-    ESCRIBIR        reduce using rule 33 (dato -> NUM .)
-    VARIABLE        reduce using rule 33 (dato -> NUM .)
-    SI              reduce using rule 33 (dato -> NUM .)
-    HAGA            reduce using rule 33 (dato -> NUM .)
-    DAR             reduce using rule 33 (dato -> NUM .)
-    PRD             reduce using rule 33 (dato -> NUM .)
-    ENTONCES        reduce using rule 33 (dato -> NUM .)
-    SUMA            reduce using rule 33 (dato -> NUM .)
-    RESTA           reduce using rule 33 (dato -> NUM .)
-    MULT            reduce using rule 33 (dato -> NUM .)
-    DIV             reduce using rule 33 (dato -> NUM .)
-
-
-state 37
-
-    (34) dato -> VARIABLE .
-
-    DORMIR          reduce using rule 34 (dato -> VARIABLE .)
-    ESCRIBIR        reduce using rule 34 (dato -> VARIABLE .)
-    VARIABLE        reduce using rule 34 (dato -> VARIABLE .)
-    SI              reduce using rule 34 (dato -> VARIABLE .)
-    HAGA            reduce using rule 34 (dato -> VARIABLE .)
-    DAR             reduce using rule 34 (dato -> VARIABLE .)
-    PRD             reduce using rule 34 (dato -> VARIABLE .)
-    ENTONCES        reduce using rule 34 (dato -> VARIABLE .)
-    SUMA            reduce using rule 34 (dato -> VARIABLE .)
-    RESTA           reduce using rule 34 (dato -> VARIABLE .)
-    MULT            reduce using rule 34 (dato -> VARIABLE .)
-    DIV             reduce using rule 34 (dato -> VARIABLE .)
 
 
 state 38
@@ -669,7 +678,7 @@ state 42
 
 state 43
 
-    (30) for -> DAR NUM VUELTAS PRI . instruccion PRD
+    (30) for -> DAR dato VUELTAS PRI . instruccion PRD
     (3) instruccion -> . instruccion asignacion
     (4) instruccion -> . instruccion aritmetica
     (5) instruccion -> . instruccion condicional
@@ -684,8 +693,8 @@ state 43
     HAGA            reduce using rule 35 (empty -> .)
     DAR             reduce using rule 35 (empty -> .)
 
-    empty                          shift and go to state 4
     instruccion                    shift and go to state 47
+    empty                          shift and go to state 4
 
 state 44
 
@@ -724,7 +733,7 @@ state 46
     (12) condicional -> . for
     (19) if -> . SI requisito ENTONCES PRI instruccion PRD
     (31) while -> . HAGA PRI instruccion PRD MIENTRAS requisito
-    (30) for -> . DAR NUM VUELTAS PRI instruccion PRD
+    (30) for -> . DAR dato VUELTAS PRI instruccion PRD
 
     PRD             shift and go to state 51
     ESCRIBIR        shift and go to state 8
@@ -742,7 +751,7 @@ state 46
 
 state 47
 
-    (30) for -> DAR NUM VUELTAS PRI instruccion . PRD
+    (30) for -> DAR dato VUELTAS PRI instruccion . PRD
     (3) instruccion -> instruccion . asignacion
     (4) instruccion -> instruccion . aritmetica
     (5) instruccion -> instruccion . condicional
@@ -754,7 +763,7 @@ state 47
     (12) condicional -> . for
     (19) if -> . SI requisito ENTONCES PRI instruccion PRD
     (31) while -> . HAGA PRI instruccion PRD MIENTRAS requisito
-    (30) for -> . DAR NUM VUELTAS PRI instruccion PRD
+    (30) for -> . DAR dato VUELTAS PRI instruccion PRD
 
     PRD             shift and go to state 52
     ESCRIBIR        shift and go to state 8
@@ -764,10 +773,10 @@ state 47
     DAR             shift and go to state 11
 
     asignacion                     shift and go to state 15
+    condicional                    shift and go to state 13
     while                          shift and go to state 16
     for                            shift and go to state 7
     aritmetica                     shift and go to state 10
-    condicional                    shift and go to state 13
     if                             shift and go to state 6
 
 state 48
@@ -822,15 +831,15 @@ state 51
 
 state 52
 
-    (30) for -> DAR NUM VUELTAS PRI instruccion PRD .
+    (30) for -> DAR dato VUELTAS PRI instruccion PRD .
 
-    DORMIR          reduce using rule 30 (for -> DAR NUM VUELTAS PRI instruccion PRD .)
-    ESCRIBIR        reduce using rule 30 (for -> DAR NUM VUELTAS PRI instruccion PRD .)
-    VARIABLE        reduce using rule 30 (for -> DAR NUM VUELTAS PRI instruccion PRD .)
-    SI              reduce using rule 30 (for -> DAR NUM VUELTAS PRI instruccion PRD .)
-    HAGA            reduce using rule 30 (for -> DAR NUM VUELTAS PRI instruccion PRD .)
-    DAR             reduce using rule 30 (for -> DAR NUM VUELTAS PRI instruccion PRD .)
-    PRD             reduce using rule 30 (for -> DAR NUM VUELTAS PRI instruccion PRD .)
+    DORMIR          reduce using rule 30 (for -> DAR dato VUELTAS PRI instruccion PRD .)
+    ESCRIBIR        reduce using rule 30 (for -> DAR dato VUELTAS PRI instruccion PRD .)
+    VARIABLE        reduce using rule 30 (for -> DAR dato VUELTAS PRI instruccion PRD .)
+    SI              reduce using rule 30 (for -> DAR dato VUELTAS PRI instruccion PRD .)
+    HAGA            reduce using rule 30 (for -> DAR dato VUELTAS PRI instruccion PRD .)
+    DAR             reduce using rule 30 (for -> DAR dato VUELTAS PRI instruccion PRD .)
+    PRD             reduce using rule 30 (for -> DAR dato VUELTAS PRI instruccion PRD .)
 
 
 state 53
@@ -866,9 +875,9 @@ state 55
     (33) dato -> . NUM
     (34) dato -> . VARIABLE
 
-    LETRA           shift and go to state 33
-    NUM             shift and go to state 36
-    VARIABLE        shift and go to state 37
+    LETRA           shift and go to state 23
+    NUM             shift and go to state 21
+    VARIABLE        shift and go to state 22
 
     dato                           shift and go to state 60
 

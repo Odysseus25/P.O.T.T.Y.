@@ -2,6 +2,7 @@ import ply.lex as lex
 import ply.yacc as yacc
 import sys
 
+
 reservadas = {
 	'JUGAR' : 'JUGAR',
 	'DORMIR' : 'DORMIR',
@@ -70,13 +71,14 @@ lex.lex()
 #         break
 #     print tok
 
-
+stringStart = "#include <iostream>\n\nint main( ){\n"
 
 ##### PARSER
 
 def p_programa(p):
 	'''programa : JUGAR instruccion DORMIR eof'''
-	p[0] = p[1] + " " + p[2] + " " + p[3]
+	#p[0] = p[1] + " " + p[2] + " " + p[3]
+	p[0] = stringStart + p[2] + "\n}"
 	#print(p[0])
 	
 def p_eof(p):
@@ -99,11 +101,11 @@ def p_instruccion(p):
 	
 def p_asignacion(p):
 	'''asignacion : VARIABLE ASIG dato'''
-	p[0] = p[1] + " " + p[2] + " " + p[3]
+	p[0] = p[1] + " " + p[2] + " " + p[3] + ";\n"
 	
 def p_aritmetica(p):
 	'''aritmetica : VARIABLE ASIG PRI dato aritExtra PRD'''
-	p[0] = p[1] + " " + p[2] + " " + p[3] + p[4] + " " + p[5] + p[6]
+	p[0] = p[1] + " " + p[2] + " " + p[3] + p[4] + " " + p[5] + p[6] + ";\n"
 	
 def p_condicional(p):
 	'''condicional : if
@@ -128,7 +130,8 @@ def p_operador(p):
 				   
 def p_if(p):
 	'''if : SI requisito ENTONCES PRI instruccion PRD'''
-	p[0] = p[1] + " " + p[2] + " " + p[3] + p[4] + p[5] + p[6]
+	#p[0] = p[1] + " " + p[2] + " " + p[3] + p[4] + p[5] + p[6]
+	p[0] = "if(" + p[2] + "){\n" + p[5] + "\n}\n" 
 	 
 def p_requisito(p):
 	'''requisito : VARIABLE condicion posibilidad'''
@@ -151,11 +154,13 @@ def p_condicion(p):
 				  
 def p_for(p):
 	'''for : DAR dato VUELTAS PRI instruccion PRD'''
-	p[0] = p[1] + " " + p[2] + " " + p[3] + p[4] + p[5] + p[6]
+	#p[0] = p[1] + " " + p[2] + " " + p[3] + p[4] + p[5] + p[6]
+	p[0] = "for( int i=1; i <=" + p[2] + "; i++){\n" + p[5] + "\n}"
 	
 def p_while(p):
 	'''while : HAGA PRI instruccion PRD MIENTRAS requisito'''
 	p[0] = p[1] + " " + p[2] + p[3] + p[4] + " " + p[5] + " " + p[6]
+	p[0] = "do{\n" + p[3] + "\n} while (" + p[6] + ");\n"
 			
 def p_dato(p):
 	'''dato : LETRA
@@ -180,11 +185,8 @@ while True:
        break
    if not s: continue
    result = parser.parse(s)
-   print(result)	  
-
-# try:
-#     file = open(filename,'r')
-# except FileNotFoundError:
-#     print("Archivo no encontrado: ",filename)
-# continue
+   f = open('out.cpp', 'w')
+   f.write(result)
+   f.close()
+   print(result)
 				  
