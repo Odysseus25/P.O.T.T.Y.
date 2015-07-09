@@ -22,7 +22,7 @@ Rule 11    condicional -> while
 Rule 12    condicional -> for
 Rule 13    aritExtra -> operador VARIABLE aritExtra
 Rule 14    aritExtra -> operador NUM aritExtra
-Rule 15    aritExtra -> <empty>
+Rule 15    aritExtra -> empty
 Rule 16    operador -> SUMA
 Rule 17    operador -> RESTA
 Rule 18    operador -> MULT
@@ -86,7 +86,7 @@ asignacion           : 3
 condicion            : 21
 condicional          : 5
 dato                 : 8 9 22
-empty                : 7
+empty                : 7 15
 eof                  : 1
 for                  : 12
 if                   : 10
@@ -700,20 +700,22 @@ state 45
     (9) aritmetica -> VARIABLE ASIG PRI dato . aritExtra PRD
     (13) aritExtra -> . operador VARIABLE aritExtra
     (14) aritExtra -> . operador NUM aritExtra
-    (15) aritExtra -> .
+    (15) aritExtra -> . empty
     (16) operador -> . SUMA
     (17) operador -> . RESTA
     (18) operador -> . MULT
     (19) operador -> . DIV
+    (36) empty -> .
 
-    PRD             reduce using rule 15 (aritExtra -> .)
-    SUMA            shift and go to state 54
-    RESTA           shift and go to state 52
-    MULT            shift and go to state 51
-    DIV             shift and go to state 53
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 50
+    DIV             shift and go to state 54
+    PRD             reduce using rule 36 (empty -> .)
 
-    operador                       shift and go to state 50
+    operador                       shift and go to state 51
     aritExtra                      shift and go to state 49
+    empty                          shift and go to state 55
 
 state 46
 
@@ -731,7 +733,7 @@ state 46
     (32) while -> . HAGA PRI instruccion PRD MIENTRAS requisito
     (31) for -> . DAR NUM VUELTAS PRI instruccion PRD
 
-    PRD             shift and go to state 55
+    PRD             shift and go to state 56
     ESCRIBIR        shift and go to state 8
     VARIABLE        shift and go to state 14
     SI              shift and go to state 9
@@ -761,7 +763,7 @@ state 47
     (32) while -> . HAGA PRI instruccion PRD MIENTRAS requisito
     (31) for -> . DAR NUM VUELTAS PRI instruccion PRD
 
-    PRD             shift and go to state 56
+    PRD             shift and go to state 57
     ESCRIBIR        shift and go to state 8
     VARIABLE        shift and go to state 14
     SI              shift and go to state 9
@@ -782,25 +784,16 @@ state 48
 
     VARIABLE        shift and go to state 19
 
-    requisito                      shift and go to state 57
+    requisito                      shift and go to state 58
 
 state 49
 
     (9) aritmetica -> VARIABLE ASIG PRI dato aritExtra . PRD
 
-    PRD             shift and go to state 58
+    PRD             shift and go to state 59
 
 
 state 50
-
-    (13) aritExtra -> operador . VARIABLE aritExtra
-    (14) aritExtra -> operador . NUM aritExtra
-
-    VARIABLE        shift and go to state 59
-    NUM             shift and go to state 60
-
-
-state 51
 
     (18) operador -> MULT .
 
@@ -808,23 +801,16 @@ state 51
     NUM             reduce using rule 18 (operador -> MULT .)
 
 
+state 51
+
+    (13) aritExtra -> operador . VARIABLE aritExtra
+    (14) aritExtra -> operador . NUM aritExtra
+
+    VARIABLE        shift and go to state 60
+    NUM             shift and go to state 61
+
+
 state 52
-
-    (17) operador -> RESTA .
-
-    VARIABLE        reduce using rule 17 (operador -> RESTA .)
-    NUM             reduce using rule 17 (operador -> RESTA .)
-
-
-state 53
-
-    (19) operador -> DIV .
-
-    VARIABLE        reduce using rule 19 (operador -> DIV .)
-    NUM             reduce using rule 19 (operador -> DIV .)
-
-
-state 54
 
     (16) operador -> SUMA .
 
@@ -832,7 +818,30 @@ state 54
     NUM             reduce using rule 16 (operador -> SUMA .)
 
 
+state 53
+
+    (17) operador -> RESTA .
+
+    VARIABLE        reduce using rule 17 (operador -> RESTA .)
+    NUM             reduce using rule 17 (operador -> RESTA .)
+
+
+state 54
+
+    (19) operador -> DIV .
+
+    VARIABLE        reduce using rule 19 (operador -> DIV .)
+    NUM             reduce using rule 19 (operador -> DIV .)
+
+
 state 55
+
+    (15) aritExtra -> empty .
+
+    PRD             reduce using rule 15 (aritExtra -> empty .)
+
+
+state 56
 
     (20) if -> SI requisito ENTONCES PRI instruccion PRD .
 
@@ -845,7 +854,7 @@ state 55
     DORMIR          reduce using rule 20 (if -> SI requisito ENTONCES PRI instruccion PRD .)
 
 
-state 56
+state 57
 
     (31) for -> DAR NUM VUELTAS PRI instruccion PRD .
 
@@ -858,7 +867,7 @@ state 56
     PRD             reduce using rule 31 (for -> DAR NUM VUELTAS PRI instruccion PRD .)
 
 
-state 57
+state 58
 
     (32) while -> HAGA PRI instruccion PRD MIENTRAS requisito .
 
@@ -871,7 +880,7 @@ state 57
     DORMIR          reduce using rule 32 (while -> HAGA PRI instruccion PRD MIENTRAS requisito .)
 
 
-state 58
+state 59
 
     (9) aritmetica -> VARIABLE ASIG PRI dato aritExtra PRD .
 
@@ -884,54 +893,58 @@ state 58
     DORMIR          reduce using rule 9 (aritmetica -> VARIABLE ASIG PRI dato aritExtra PRD .)
 
 
-state 59
+state 60
 
     (13) aritExtra -> operador VARIABLE . aritExtra
     (13) aritExtra -> . operador VARIABLE aritExtra
     (14) aritExtra -> . operador NUM aritExtra
-    (15) aritExtra -> .
+    (15) aritExtra -> . empty
     (16) operador -> . SUMA
     (17) operador -> . RESTA
     (18) operador -> . MULT
     (19) operador -> . DIV
+    (36) empty -> .
 
-    PRD             reduce using rule 15 (aritExtra -> .)
-    SUMA            shift and go to state 54
-    RESTA           shift and go to state 52
-    MULT            shift and go to state 51
-    DIV             shift and go to state 53
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 50
+    DIV             shift and go to state 54
+    PRD             reduce using rule 36 (empty -> .)
 
-    operador                       shift and go to state 50
-    aritExtra                      shift and go to state 61
+    operador                       shift and go to state 51
+    aritExtra                      shift and go to state 62
+    empty                          shift and go to state 55
 
-state 60
+state 61
 
     (14) aritExtra -> operador NUM . aritExtra
     (13) aritExtra -> . operador VARIABLE aritExtra
     (14) aritExtra -> . operador NUM aritExtra
-    (15) aritExtra -> .
+    (15) aritExtra -> . empty
     (16) operador -> . SUMA
     (17) operador -> . RESTA
     (18) operador -> . MULT
     (19) operador -> . DIV
+    (36) empty -> .
 
-    PRD             reduce using rule 15 (aritExtra -> .)
-    SUMA            shift and go to state 54
-    RESTA           shift and go to state 52
-    MULT            shift and go to state 51
-    DIV             shift and go to state 53
+    SUMA            shift and go to state 52
+    RESTA           shift and go to state 53
+    MULT            shift and go to state 50
+    DIV             shift and go to state 54
+    PRD             reduce using rule 36 (empty -> .)
 
-    operador                       shift and go to state 50
-    aritExtra                      shift and go to state 62
+    operador                       shift and go to state 51
+    aritExtra                      shift and go to state 63
+    empty                          shift and go to state 55
 
-state 61
+state 62
 
     (13) aritExtra -> operador VARIABLE aritExtra .
 
     PRD             reduce using rule 13 (aritExtra -> operador VARIABLE aritExtra .)
 
 
-state 62
+state 63
 
     (14) aritExtra -> operador NUM aritExtra .
 

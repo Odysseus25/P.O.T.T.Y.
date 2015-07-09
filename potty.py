@@ -115,18 +115,16 @@ def p_aritExtra(p):
 				  | operador NUM aritExtra
 				  | empty'''
 	if p[3] is None:
-		p[0] = ""
-	else:
-		if p[1] is not None:
-			p[0] = p[1] + " " + p[2]
-		else:
-			p[0] = p[2]
+		 p[0] = p[1] + " " + p[2]
+ 	else:
+ 		p[0] = p[1] + " " + p[2] + p[3]
 				  
 def p_operador(p):
 	'''operador : SUMA
 				   | RESTA
 				   | MULT
 				   | DIV''' 
+	p[0] = p[1]
 				   
 def p_if(p):
 	'''if : SI requisito ENTONCES PRI instruccion PRD'''
