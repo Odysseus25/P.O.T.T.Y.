@@ -91,7 +91,7 @@ def p_instruccion(p):
 	if p[1] is None:
 		p[0] = ""
 	else:
-		if [1] is not None:
+		if p[1] is not None:
 			p[0] = p[1] + " " + p[2]
 		else:
 			p[0] = p[2]
@@ -103,7 +103,7 @@ def p_asignacion(p):
 	
 def p_aritmetica(p):
 	'''aritmetica : VARIABLE ASIG PRI dato aritExtra PRD'''
-	#p[0] = p[1] + p[2] + p[3] + p[4] + p[5] + p[6]
+	p[0] = p[1] + " " + p[2] + " " + p[3] + p[4] + " " + p[5] + p[6]
 	
 def p_condicional(p):
 	'''condicional : if
@@ -115,7 +115,7 @@ def p_aritExtra(p):
 	'''aritExtra : operador VARIABLE aritExtra 
 				  | operador NUM aritExtra
 				  | '''
-	#condicional
+	p[0] = p[1] + " " + p[2] + " " +p[3]
 				  
 def p_operador(p):
 	'''operador : SUMA
