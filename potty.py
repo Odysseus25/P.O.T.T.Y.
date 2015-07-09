@@ -114,13 +114,7 @@ def p_aritExtra(p):
 	'''aritExtra : operador VARIABLE aritExtra 
 				  | operador NUM aritExtra
 				  | '''
-	if p[3] is None:
-		p[0] = ""
-	else:
-		if p[1] is not None:
-			p[0] = p[1] + " " + p[2] + " " +p[3]
-		else:
-			p[0] = p[1] + " " + p[2]
+	p[0] = p[1] + " " + p[2] + " " +p[3]
 				  
 def p_operador(p):
 	'''operador : SUMA
