@@ -183,7 +183,7 @@ def p_empty(p):
 # Build the parser
 parser = yacc.yacc()
 
-PARSEAR EL ARCHIVO
+# PARSEAR EL ARCHIVO
 
 text = ""
 
