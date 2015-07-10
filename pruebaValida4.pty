@@ -1,0 +1,7 @@
+JUGAR
+var1 = 30
+var2 = 80
+DAR 10 VUELTAS(var3 = (var1 * 5 + var2 / 8))
+SI var3 == true ENTONCES(var4 = 12)
+SI var3 == false ENTONCES(DAR 18 VUELTAS(var1 = (var3 - var2)))
+DORMIR

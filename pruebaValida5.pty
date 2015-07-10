@@ -1,0 +1,8 @@
+JUGAR
+var1 = 3
+var2 = 12
+var3 = 24
+var4 = (var3 * var2)
+SI var4 == 288 ENTONCES (var1 = 8 DAR var2 VUELTAS(var4 = (var4-12) ESCRIBIR var4))
+HAGA (var5 = (var4 + 10)) MIENTRAS var5 <= 20
+DORMIR
