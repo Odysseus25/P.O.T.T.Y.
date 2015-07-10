@@ -13,14 +13,12 @@ reservadas = {
 	'ENTONCES' : 'ENTONCES',
 	'HAGA' : 'HAGA',
 	'MIENTRAS' : 'MIENTRAS',
-	'ESCRIBIR' : 'ESCRIBIR',
-	'VERDAD' : 'VERDAD',
-	'MENTIRA' : 'MENTIRA'
+	'ESCRIBIR' : 'ESCRIBIR'
 
 }
 
 # Lista de tokens
-tokens = ['SUMA', 'RESTA', 'DIV', 'MULT', 'PRI', 'PRD', 'ASIG', 'MAYQ', 'MENQ', 'IGUAL', 'MAYIGUAL', 'MENIGUAL', 'DIFERENTE', 'VARIABLE', 'NUM', 'LETRA', 'FINDELINEA', 'ID'] + list(reservadas.values())
+tokens = ['SUMA', 'RESTA', 'DIV', 'MULT', 'PRI', 'PRD', 'ASIG', 'MAYQ', 'MENQ', 'IGUAL', 'MAYIGUAL', 'MENIGUAL', 'DIFERENTE', 'VARIABLE', 'NUM', 'LETRA', 'FINDELINEA', 'ID', 'MENTIRA', 'VERDAD'] + list(reservadas.values())
 
 t_SUMA = r'\+'
 t_RESTA = r'-'
@@ -37,6 +35,8 @@ t_MENIGUAL = r'<='
 t_DIFERENTE = r'!='
 t_VARIABLE = r'([a-z]+[A-Z]*[0-9]*)+'
 t_LETRA = r'[a-zA-Z]'
+t_MENTIRA = r'false'
+t_VERDAD = r'true'
 
 # expresion regular para numeros
 def t_NUM(t):
@@ -74,7 +74,6 @@ stringStart = "#include <iostream>\nusing namespace std;\n\nint main( ){\n"
 
 def p_programa(p):
 	'''programa : JUGAR instruccion DORMIR eof'''
-	#p[0] = p[1] + " " + p[2] + " " + p[3]
 	p[0] = stringStart + p[2] + "\nreturn 0\n}"
 	
 def p_eof(p):
@@ -89,7 +88,7 @@ def p_instruccion(p):
 	'''instruccion : instruccion asignacion
 					| instruccion aritmetica
 					| instruccion condicional
-					| instruccion ESCRIBIR
+					| instruccion print
 					| empty'''
 	if p[1] is None:
 		p[0] = ""
@@ -98,6 +97,10 @@ def p_instruccion(p):
 			p[0] = p[1] + " " + p[2]
 		else:
 			p[0] = p[2]
+
+def p_print(p):
+	'''print : ESCRIBIR dato'''
+	p[0] = "cout << " + p[2] + ";\n"
 		
 	
 def p_asignacion(p):

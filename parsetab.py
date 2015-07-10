@@ -5,9 +5,9 @@ _tabversion = '3.5'
 
 _lr_method = 'LALR'
 
-_lr_signature = '813122743D83E6CCCAAB8D50D730CF41'
+_lr_signature = '4362467DE4063FBD063EEC6F6067AB51'
     
-_lr_action_items = {'DORMIR':([2,3,4,6,7,8,10,13,15,16,24,25,26,41,43,44,45,46,55,56,57,58,],[-38,5,-10,-13,-15,-9,-7,-8,-6,-14,-36,-37,-35,-11,-24,-25,-26,-23,-22,-33,-34,-12,]),'JUGAR':([0,],[2,]),'ENTONCES':([21,24,25,26,43,44,45,46,],[30,-36,-37,-35,-24,-25,-26,-23,]),'DIFERENTE':([22,],[34,]),'VERDAD':([31,32,33,34,35,36,37,],[-31,-28,-29,-32,44,-27,-30,]),'MENTIRA':([31,32,33,34,35,36,37,],[-31,-28,-29,-32,45,-27,-30,]),'RESTA':([24,25,26,49,53,54,64,],[-36,-37,-35,-38,61,-17,-16,]),'DIV':([24,25,26,49,53,54,64,],[-36,-37,-35,-38,62,-17,-16,]),'MULT':([24,25,26,49,53,54,64,],[-36,-37,-35,-38,60,-17,-16,]),'HAGA':([2,3,4,6,7,8,10,13,15,16,24,25,26,27,39,41,42,43,44,45,46,47,50,51,55,56,57,58,],[-38,12,-10,-13,-15,-9,-7,-8,-6,-14,-36,-37,-35,-38,12,-11,-38,-24,-25,-26,-23,-38,12,12,-22,-33,-34,-12,]),'ASIG':([14,],[28,]),'MENIGUAL':([22,],[31,]),'ESCRIBIR':([2,3,4,6,7,8,10,13,15,16,24,25,26,27,39,41,42,43,44,45,46,47,50,51,55,56,57,58,],[-38,8,-10,-13,-15,-9,-7,-8,-6,-14,-36,-37,-35,-38,8,-11,-38,-24,-25,-26,-23,-38,8,8,-22,-33,-34,-12,]),'PRI':([12,28,30,38,],[27,40,42,47,]),'NUM':([11,28,31,32,33,34,35,36,37,40,59,60,61,62,63,],[24,24,-31,-28,-29,-32,24,-27,-30,24,24,-20,-19,-21,-18,]),'SUMA':([24,25,26,49,53,54,64,],[-36,-37,-35,-38,63,-17,-16,]),'DAR':([2,3,4,6,7,8,10,13,15,16,24,25,26,27,39,41,42,43,44,45,46,47,50,51,55,56,57,58,],[-38,11,-10,-13,-15,-9,-7,-8,-6,-14,-36,-37,-35,-38,11,-11,-38,-24,-25,-26,-23,-38,11,11,-22,-33,-34,-12,]),'$end':([1,5,17,18,19,20,29,],[0,-38,-1,-2,-5,-3,-4,]),'PRD':([4,6,7,8,10,13,15,16,24,25,26,27,39,41,42,43,44,45,46,47,49,50,51,53,54,55,56,57,58,64,],[-10,-13,-15,-9,-7,-8,-6,-14,-36,-37,-35,-38,48,-11,-38,-24,-25,-26,-23,-38,-38,55,56,58,-17,-22,-33,-34,-12,-16,]),'MAYIGUAL':([22,],[37,]),'MIENTRAS':([48,],[52,]),'MAYQ':([22,],[36,]),'VARIABLE':([2,3,4,6,7,8,9,10,11,13,15,16,24,25,26,27,28,31,32,33,34,35,36,37,39,40,41,42,43,44,45,46,47,50,51,52,55,56,57,58,59,60,61,62,63,],[-38,14,-10,-13,-15,-9,22,-7,25,-8,-6,-14,-36,-37,-35,-38,25,-31,-28,-29,-32,25,-27,-30,14,25,-11,-38,-24,-25,-26,-23,-38,14,14,22,-22,-33,-34,-12,25,-20,-19,-21,-18,]),'IGUAL':([22,],[33,]),'LETRA':([11,28,31,32,33,34,35,36,37,40,59,60,61,62,63,],[26,26,-31,-28,-29,-32,26,-27,-30,26,26,-20,-19,-21,-18,]),'FINDELINEA':([5,19,],[19,19,]),'VUELTAS':([23,24,25,26,],[38,-36,-37,-35,]),'MENQ':([22,],[32,]),'SI':([2,3,4,6,7,8,10,13,15,16,24,25,26,27,39,41,42,43,44,45,46,47,50,51,55,56,57,58,],[-38,9,-10,-13,-15,-9,-7,-8,-6,-14,-36,-37,-35,-38,9,-11,-38,-24,-25,-26,-23,-38,9,9,-22,-33,-34,-12,]),}
+_lr_action_items = {'DORMIR':([2,3,4,6,7,10,12,14,16,17,22,23,24,25,43,45,46,47,48,57,58,59,60,],[-39,5,-10,-14,-16,-7,-9,-8,-6,-15,-38,-36,-11,-37,-12,-25,-26,-27,-24,-23,-34,-35,-13,]),'JUGAR':([0,],[2,]),'ENTONCES':([22,23,25,26,45,46,47,48,],[-38,-36,-37,32,-25,-26,-27,-24,]),'DIFERENTE':([27,],[36,]),'VERDAD':([33,34,35,36,37,38,39,],[-32,-29,-30,-33,46,-28,-31,]),'MENTIRA':([33,34,35,36,37,38,39,],[-32,-29,-30,-33,47,-28,-31,]),'DIV':([22,23,25,51,55,56,66,],[-38,-36,-37,-39,64,-18,-17,]),'RESTA':([22,23,25,51,55,56,66,],[-38,-36,-37,-39,63,-18,-17,]),'MULT':([22,23,25,51,55,56,66,],[-38,-36,-37,-39,62,-18,-17,]),'HAGA':([2,3,4,6,7,10,12,14,16,17,22,23,24,25,29,41,43,44,45,46,47,48,49,52,53,57,58,59,60,],[-39,13,-10,-14,-16,-7,-9,-8,-6,-15,-38,-36,-11,-37,-39,13,-12,-39,-25,-26,-27,-24,-39,13,13,-23,-34,-35,-13,]),'ASIG':([15,],[30,]),'MENIGUAL':([27,],[33,]),'ESCRIBIR':([2,3,4,6,7,10,12,14,16,17,22,23,24,25,29,41,43,44,45,46,47,48,49,52,53,57,58,59,60,],[-39,8,-10,-14,-16,-7,-9,-8,-6,-15,-38,-36,-11,-37,-39,8,-12,-39,-25,-26,-27,-24,-39,8,8,-23,-34,-35,-13,]),'PRI':([13,30,32,40,],[29,42,44,49,]),'NUM':([8,11,30,33,34,35,36,37,38,39,42,61,62,63,64,65,],[25,25,25,-32,-29,-30,-33,25,-28,-31,25,25,-21,-20,-22,-19,]),'SUMA':([22,23,25,51,55,56,66,],[-38,-36,-37,-39,65,-18,-17,]),'DAR':([2,3,4,6,7,10,12,14,16,17,22,23,24,25,29,41,43,44,45,46,47,48,49,52,53,57,58,59,60,],[-39,11,-10,-14,-16,-7,-9,-8,-6,-15,-38,-36,-11,-37,-39,11,-12,-39,-25,-26,-27,-24,-39,11,11,-23,-34,-35,-13,]),'$end':([1,5,18,19,20,21,31,],[0,-39,-1,-2,-5,-3,-4,]),'PRD':([4,6,7,10,12,14,16,17,22,23,24,25,29,41,43,44,45,46,47,48,49,51,52,53,55,56,57,58,59,60,66,],[-10,-14,-16,-7,-9,-8,-6,-15,-38,-36,-11,-37,-39,50,-12,-39,-25,-26,-27,-24,-39,-39,57,58,60,-18,-23,-34,-35,-13,-17,]),'MAYIGUAL':([27,],[39,]),'MIENTRAS':([50,],[54,]),'MAYQ':([27,],[38,]),'VARIABLE':([2,3,4,6,7,8,9,10,11,12,14,16,17,22,23,24,25,29,30,33,34,35,36,37,38,39,41,42,43,44,45,46,47,48,49,52,53,54,57,58,59,60,61,62,63,64,65,],[-39,15,-10,-14,-16,22,27,-7,22,-9,-8,-6,-15,-38,-36,-11,-37,-39,22,-32,-29,-30,-33,22,-28,-31,15,22,-12,-39,-25,-26,-27,-24,-39,15,15,27,-23,-34,-35,-13,22,-21,-20,-22,-19,]),'IGUAL':([27,],[35,]),'LETRA':([8,11,30,33,34,35,36,37,38,39,42,61,62,63,64,65,],[23,23,23,-32,-29,-30,-33,23,-28,-31,23,23,-21,-20,-22,-19,]),'FINDELINEA':([5,20,],[20,20,]),'VUELTAS':([22,23,25,28,],[-38,-36,-37,40,]),'MENQ':([27,],[34,]),'SI':([2,3,4,6,7,10,12,14,16,17,22,23,24,25,29,41,43,44,45,46,47,48,49,52,53,57,58,59,60,],[-39,9,-10,-14,-16,-7,-9,-8,-6,-15,-38,-36,-11,-37,-39,9,-12,-39,-25,-26,-27,-24,-39,9,9,-23,-34,-35,-13,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'aritExtra':([49,],[53,]),'for':([3,39,50,51,],[7,7,7,7,]),'asignacion':([3,39,50,51,],[15,15,15,15,]),'posibilidad':([35,],[46,]),'instruccion':([2,27,42,47,],[3,39,50,51,]),'dato':([11,28,35,40,59,],[23,41,43,49,64,]),'FINLINEA':([5,19,],[18,29,]),'requisito':([9,52,],[21,57,]),'operador':([53,],[59,]),'while':([3,39,50,51,],[16,16,16,16,]),'aritmetica':([3,39,50,51,],[10,10,10,10,]),'condicion':([22,],[35,]),'programa':([0,],[1,]),'eof':([5,],[17,]),'condicional':([3,39,50,51,],[13,13,13,13,]),'empty':([2,5,27,42,47,49,],[4,20,4,4,4,54,]),'if':([3,39,50,51,],[6,6,6,6,]),}
+_lr_goto_items = {'aritExtra':([51,],[55,]),'for':([3,41,52,53,],[7,7,7,7,]),'asignacion':([3,41,52,53,],[16,16,16,16,]),'posibilidad':([37,],[48,]),'instruccion':([2,29,44,49,],[3,41,52,53,]),'dato':([8,11,30,37,42,61,],[24,28,43,45,51,66,]),'FINLINEA':([5,20,],[19,31,]),'requisito':([9,54,],[26,59,]),'operador':([55,],[61,]),'while':([3,41,52,53,],[17,17,17,17,]),'aritmetica':([3,41,52,53,],[10,10,10,10,]),'condicion':([27,],[37,]),'programa':([0,],[1,]),'print':([3,41,52,53,],[12,12,12,12,]),'eof':([5,],[18,]),'condicional':([3,41,52,53,],[14,14,14,14,]),'empty':([2,5,29,44,49,51,],[4,21,4,4,4,56,]),'if':([3,41,52,53,],[6,6,6,6,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,42 +26,43 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> programa","S'",1,None,None,None),
-  ('programa -> JUGAR instruccion DORMIR eof','programa',4,'p_programa','potty.py',80),
-  ('eof -> FINLINEA','eof',1,'p_eof','potty.py',85),
-  ('eof -> empty','eof',1,'p_eof','potty.py',86),
-  ('FINLINEA -> FINDELINEA FINLINEA','FINLINEA',2,'p_finlinea','potty.py',89),
-  ('FINLINEA -> FINDELINEA','FINLINEA',1,'p_finlinea','potty.py',90),
-  ('instruccion -> instruccion asignacion','instruccion',2,'p_instruccion','potty.py',93),
-  ('instruccion -> instruccion aritmetica','instruccion',2,'p_instruccion','potty.py',94),
-  ('instruccion -> instruccion condicional','instruccion',2,'p_instruccion','potty.py',95),
-  ('instruccion -> instruccion ESCRIBIR','instruccion',2,'p_instruccion','potty.py',96),
-  ('instruccion -> empty','instruccion',1,'p_instruccion','potty.py',97),
-  ('asignacion -> VARIABLE ASIG dato','asignacion',3,'p_asignacion','potty.py',108),
-  ('aritmetica -> VARIABLE ASIG PRI dato aritExtra PRD','aritmetica',6,'p_aritmetica','potty.py',112),
-  ('condicional -> if','condicional',1,'p_condicional','potty.py',116),
-  ('condicional -> while','condicional',1,'p_condicional','potty.py',117),
-  ('condicional -> for','condicional',1,'p_condicional','potty.py',118),
-  ('aritExtra -> aritExtra operador dato','aritExtra',3,'p_aritExtra','potty.py',122),
-  ('aritExtra -> empty','aritExtra',1,'p_aritExtra','potty.py',123),
-  ('operador -> SUMA','operador',1,'p_operador','potty.py',130),
-  ('operador -> RESTA','operador',1,'p_operador','potty.py',131),
-  ('operador -> MULT','operador',1,'p_operador','potty.py',132),
-  ('operador -> DIV','operador',1,'p_operador','potty.py',133),
-  ('if -> SI requisito ENTONCES PRI instruccion PRD','if',6,'p_if','potty.py',137),
-  ('requisito -> VARIABLE condicion posibilidad','requisito',3,'p_requisito','potty.py',142),
-  ('posibilidad -> dato','posibilidad',1,'p_posibilidad','potty.py',146),
-  ('posibilidad -> VERDAD','posibilidad',1,'p_posibilidad','potty.py',147),
-  ('posibilidad -> MENTIRA','posibilidad',1,'p_posibilidad','potty.py',148),
-  ('condicion -> MAYQ','condicion',1,'p_condicion','potty.py',152),
-  ('condicion -> MENQ','condicion',1,'p_condicion','potty.py',153),
-  ('condicion -> IGUAL','condicion',1,'p_condicion','potty.py',154),
-  ('condicion -> MAYIGUAL','condicion',1,'p_condicion','potty.py',155),
-  ('condicion -> MENIGUAL','condicion',1,'p_condicion','potty.py',156),
-  ('condicion -> DIFERENTE','condicion',1,'p_condicion','potty.py',157),
-  ('for -> DAR dato VUELTAS PRI instruccion PRD','for',6,'p_for','potty.py',161),
-  ('while -> HAGA PRI instruccion PRD MIENTRAS requisito','while',6,'p_while','potty.py',166),
-  ('dato -> LETRA','dato',1,'p_dato','potty.py',171),
-  ('dato -> NUM','dato',1,'p_dato','potty.py',172),
-  ('dato -> VARIABLE','dato',1,'p_dato','potty.py',173),
-  ('empty -> <empty>','empty',0,'p_empty','potty.py',180),
+  ('programa -> JUGAR instruccion DORMIR eof','programa',4,'p_programa','potty.py',76),
+  ('eof -> FINLINEA','eof',1,'p_eof','potty.py',80),
+  ('eof -> empty','eof',1,'p_eof','potty.py',81),
+  ('FINLINEA -> FINDELINEA FINLINEA','FINLINEA',2,'p_finlinea','potty.py',84),
+  ('FINLINEA -> FINDELINEA','FINLINEA',1,'p_finlinea','potty.py',85),
+  ('instruccion -> instruccion asignacion','instruccion',2,'p_instruccion','potty.py',88),
+  ('instruccion -> instruccion aritmetica','instruccion',2,'p_instruccion','potty.py',89),
+  ('instruccion -> instruccion condicional','instruccion',2,'p_instruccion','potty.py',90),
+  ('instruccion -> instruccion print','instruccion',2,'p_instruccion','potty.py',91),
+  ('instruccion -> empty','instruccion',1,'p_instruccion','potty.py',92),
+  ('print -> ESCRIBIR dato','print',2,'p_print','potty.py',102),
+  ('asignacion -> VARIABLE ASIG dato','asignacion',3,'p_asignacion','potty.py',107),
+  ('aritmetica -> VARIABLE ASIG PRI dato aritExtra PRD','aritmetica',6,'p_aritmetica','potty.py',111),
+  ('condicional -> if','condicional',1,'p_condicional','potty.py',115),
+  ('condicional -> while','condicional',1,'p_condicional','potty.py',116),
+  ('condicional -> for','condicional',1,'p_condicional','potty.py',117),
+  ('aritExtra -> aritExtra operador dato','aritExtra',3,'p_aritExtra','potty.py',121),
+  ('aritExtra -> empty','aritExtra',1,'p_aritExtra','potty.py',122),
+  ('operador -> SUMA','operador',1,'p_operador','potty.py',129),
+  ('operador -> RESTA','operador',1,'p_operador','potty.py',130),
+  ('operador -> MULT','operador',1,'p_operador','potty.py',131),
+  ('operador -> DIV','operador',1,'p_operador','potty.py',132),
+  ('if -> SI requisito ENTONCES PRI instruccion PRD','if',6,'p_if','potty.py',136),
+  ('requisito -> VARIABLE condicion posibilidad','requisito',3,'p_requisito','potty.py',140),
+  ('posibilidad -> dato','posibilidad',1,'p_posibilidad','potty.py',144),
+  ('posibilidad -> VERDAD','posibilidad',1,'p_posibilidad','potty.py',145),
+  ('posibilidad -> MENTIRA','posibilidad',1,'p_posibilidad','potty.py',146),
+  ('condicion -> MAYQ','condicion',1,'p_condicion','potty.py',150),
+  ('condicion -> MENQ','condicion',1,'p_condicion','potty.py',151),
+  ('condicion -> IGUAL','condicion',1,'p_condicion','potty.py',152),
+  ('condicion -> MAYIGUAL','condicion',1,'p_condicion','potty.py',153),
+  ('condicion -> MENIGUAL','condicion',1,'p_condicion','potty.py',154),
+  ('condicion -> DIFERENTE','condicion',1,'p_condicion','potty.py',155),
+  ('for -> DAR dato VUELTAS PRI instruccion PRD','for',6,'p_for','potty.py',159),
+  ('while -> HAGA PRI instruccion PRD MIENTRAS requisito','while',6,'p_while','potty.py',163),
+  ('dato -> LETRA','dato',1,'p_dato','potty.py',167),
+  ('dato -> NUM','dato',1,'p_dato','potty.py',168),
+  ('dato -> VARIABLE','dato',1,'p_dato','potty.py',169),
+  ('empty -> <empty>','empty',0,'p_empty','potty.py',176),
 ]
