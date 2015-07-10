@@ -1,0 +1,3 @@
+JUGAR
+SI variable1 != variable2 ENTONCES (vae1 = (variable1 + variable2))
+DORMIR

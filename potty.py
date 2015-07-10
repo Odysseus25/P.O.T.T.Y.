@@ -2,6 +2,7 @@ import ply.lex as lex
 import ply.yacc as yacc
 import sys
 
+#Lista de palabras reservadas
 
 reservadas = {
 	'JUGAR' : 'JUGAR',
@@ -18,6 +19,7 @@ reservadas = {
 
 }
 
+# Lista de tokens
 tokens = ['SUMA', 'RESTA', 'DIV', 'MULT', 'PRI', 'PRD', 'ASIG', 'MAYQ', 'MENQ', 'IGUAL', 'MAYIGUAL', 'MENIGUAL', 'DIFERENTE', 'VARIABLE', 'NUM', 'LETRA', 'FINDELINEA', 'ID'] + list(reservadas.values())
 
 t_SUMA = r'\+'
@@ -35,11 +37,12 @@ t_MENIGUAL = r'<='
 t_DIFERENTE = r'!='
 t_VARIABLE = r'([a-z]+[A-Z]*[0-9]*)+'
 t_LETRA = r'[a-zA-Z]'
-	
+
+# expresion regular para numeros
 def t_NUM(t):
 	r'[0-9]+'
 	return t
-	
+
 def t_FINDELINEA(t):
 	r'(\n)+'
 	t.lexer.lineno += t.value.count("\n")
@@ -64,22 +67,15 @@ t_ignore = " \t"
 import ply.lex as lex
 lex.lex()
 
-#lexer.input("JUGAR SI 6 > 7")
-
-# while True:
-#     tok = lexer.token()
-#     if not tok:
-#         break
-#     print tok
-
 stringStart = "#include <iostream>\nusing namespace std;\n\nint main( ){\n"
 
 ##### PARSER
+##### PRODUCCIONES DE LA GRAMATICA
 
 def p_programa(p):
 	'''programa : JUGAR instruccion DORMIR eof'''
 	#p[0] = p[1] + " " + p[2] + " " + p[3]
-	p[0] = stringStart + p[2] + "\n}"
+	p[0] = stringStart + p[2] + "\nreturn 0\n}"
 	
 def p_eof(p):
 	'''eof : FINLINEA
@@ -135,7 +131,6 @@ def p_operador(p):
 				   
 def p_if(p):
 	'''if : SI requisito ENTONCES PRI instruccion PRD'''
-	#p[0] = p[1] + " " + p[2] + " " + p[3] + p[4] + p[5] + p[6]
 	p[0] = "if(" + p[2] + "){\n" + p[5] + "\n}\n" 
 	 
 def p_requisito(p):
@@ -159,12 +154,10 @@ def p_condicion(p):
 				  
 def p_for(p):
 	'''for : DAR dato VUELTAS PRI instruccion PRD'''
-	#p[0] = p[1] + " " + p[2] + " " + p[3] + p[4] + p[5] + p[6]
 	p[0] = "for( int i=1; i <=" + p[2] + "; i++){\n" + p[5] + "\n}"
 	
 def p_while(p):
 	'''while : HAGA PRI instruccion PRD MIENTRAS requisito'''
-	# p[0] = p[1] + " " + p[2] + p[3] + p[4] + " " + p[5] + " " + p[6]
 	p[0] = "do{\n" + p[3] + "\n} while (" + p[6] + ");\n"
 			
 def p_dato(p):
@@ -185,14 +178,18 @@ parser = yacc.yacc()
 
 # PARSEAR EL ARCHIVO
 
+# tomamos el nombre de archivo desde la terminal y le quitamos los linebreaks
+# para que el parser procese una sola linea
+inputFile = raw_input("Ingrese el nombre del archivo: ")
 text = ""
-
-for line in file('myfirstpotty.pty'):
+for line in file(inputFile):
 	text += line.replace("\n","")
 
-
+# el resultado del parseo es guardado en result y posteriormente
+# lo guardamos en un archivo nuevo
 result = parser.parse(text)
-f = open('out.cpp', 'w')
+outputFile = raw_input("Ingrese el nombre del archivo de salida: ")
+f = open(outputFile, 'w')
 f.write(result)
 f.close()
 print(result)
