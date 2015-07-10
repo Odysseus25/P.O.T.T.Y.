@@ -41,28 +41,29 @@ def t_NUM(t):
 	return t
 	
 def t_FINDELINEA(t):
-    r'(\n)+'
-    t.lexer.lineno += t.value.count("\n")
-    return t
+	r'(\n)+'
+	t.lexer.lineno += t.value.count("\n")
+	return t
 
 #funcion que determina el numero de linea 
 def t_newline(t):
-    r'\n+'
-    t.lexer.lineno += len(t.value)
+	r'\n+'
+	t.lexer.lineno += len(t.value)
 
 def t_ID(t):
-    r'[A-Z][A-Z0-9]*'
-    t.type = reservadas.get(t.value, 'ID')    # Chequea palabras reservadas
-    return t
+	r'[A-Z][A-Z0-9]*'
+	t.type = reservadas.get(t.value, 'ID')    # Chequea palabras reservadas
+	return t
 	
 def t_error(t):
-    print("Caracter ilegal '%s'" % t.value[0] + " en la linea " + str(t.lexer.lineno))
-    t.lexer.skip(1)
+	print("Caracter ilegal '%s'" % t.value[0] + " en la linea " + str(t.lexer.lineno))
+	t.lexer.skip(1)
 
 t_ignore = " \t"	
 
 import ply.lex as lex
 lex.lex()
+
 #lexer.input("JUGAR SI 6 > 7")
 
 # while True:
@@ -71,7 +72,7 @@ lex.lex()
 #         break
 #     print tok
 
-stringStart = "#include <iostream>\n\nint main( ){\n"
+stringStart = "#include <iostream>\nusing namespace std;\n\nint main( ){\n"
 
 ##### PARSER
 
@@ -79,10 +80,14 @@ def p_programa(p):
 	'''programa : JUGAR instruccion DORMIR eof'''
 	#p[0] = p[1] + " " + p[2] + " " + p[3]
 	p[0] = stringStart + p[2] + "\n}"
-	#print(p[0])
 	
 def p_eof(p):
-	'''eof : '''
+	'''eof : FINLINEA
+			| empty'''
+
+def p_finlinea(p):
+	'''FINLINEA : FINDELINEA FINLINEA
+				 | FINDELINEA'''
 	
 def p_instruccion(p):
 	'''instruccion : instruccion asignacion
@@ -118,8 +123,8 @@ def p_aritExtra(p):
 				  | empty'''
 	if p[1] is None:
 		p[0] = ""
- 	else:
- 		p[0] = p[1] + " " + p[2] + " " + p[3]
+	else:
+		p[0] = p[1] + " " + p[2] + " " + p[3]
 				  
 def p_operador(p):
 	'''operador : SUMA
@@ -139,7 +144,7 @@ def p_requisito(p):
 	
 def p_posibilidad(p):
 	'''posibilidad : dato
-				    | VERDAD
+					| VERDAD
 					| MENTIRA'''
 	p[0] = p[1]
 					
@@ -159,7 +164,7 @@ def p_for(p):
 	
 def p_while(p):
 	'''while : HAGA PRI instruccion PRD MIENTRAS requisito'''
-	p[0] = p[1] + " " + p[2] + p[3] + p[4] + " " + p[5] + " " + p[6]
+	# p[0] = p[1] + " " + p[2] + p[3] + p[4] + " " + p[5] + " " + p[6]
 	p[0] = "do{\n" + p[3] + "\n} while (" + p[6] + ");\n"
 			
 def p_dato(p):
@@ -169,7 +174,7 @@ def p_dato(p):
 	p[0] = p[1]
 
 def p_error(p):
-    print ("ERROR FATAL")
+	print ("ERROR FATAL")
 
 def p_empty(p): 
 	'empty :'
@@ -178,15 +183,17 @@ def p_empty(p):
 # Build the parser
 parser = yacc.yacc()
 
-while True:
-   try:
-       s = raw_input('potty> ')
-   except EOFError:
-       break
-   if not s: continue
-   result = parser.parse(s)
-   f = open('out.cpp', 'w')
-   f.write(result)
-   f.close()
-   print(result)
+PARSEAR EL ARCHIVO
+
+text = ""
+
+for line in file('myfirstpotty.pty'):
+	text += line.replace("\n","")
+
+
+result = parser.parse(text)
+f = open('out.cpp', 'w')
+f.write(result)
+f.close()
+print(result)
 				  
