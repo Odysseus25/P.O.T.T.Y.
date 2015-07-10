@@ -14,7 +14,6 @@ reservadas = {
 	'HAGA' : 'HAGA',
 	'MIENTRAS' : 'MIENTRAS',
 	'ESCRIBIR' : 'ESCRIBIR'
-
 }
 
 # Lista de tokens
@@ -170,7 +169,7 @@ def p_dato(p):
 	p[0] = p[1]
 
 def p_error(p):
-	print ("ERROR FATAL")
+	print ("¡Error de sintaxis! D:")
 
 def p_empty(p): 
 	'empty :'
